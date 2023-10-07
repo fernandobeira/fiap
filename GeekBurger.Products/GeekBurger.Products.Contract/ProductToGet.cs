@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GeekBurger.Products.Contract.Models
+namespace GeekBurger.Products.Contract
 {
-    public class Product
+    public class ProductToGet
     {
-        public string StoreName { get; set; }
+        public Guid StoreId { get; set; }
         public Guid ProductId { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
-        public List<Item> Ingredients { get; set; }
+        public List<ItemToGet> Items { get; set; }
         public decimal Price { get; set; }
     }
 

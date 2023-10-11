@@ -45,19 +45,18 @@ namespace GeekBurger.Products.Service
         public void EnsureTopicIsCreated()
         {
             if (!_namespace.Topics.List()
-                .Any(topic => topic.Name
+                    .Any(topic => topic.Name
                     .Equals(Topic, StringComparison.InvariantCultureIgnoreCase)))
+                
                 _namespace.Topics.Define(Topic)
                     .WithSizeInMB(1024).Create();
-
         }
 
         public void AddToMessageList(IEnumerable<EntityEntry<Product>> changes)
         {
             _messages.AddRange(changes
-            .Where(entity => entity.State != EntityState.Detached
-                    && entity.State != EntityState.Unchanged)
-            .Select(GetMessage).ToList());
+                .Where(entity => entity.State != EntityState.Detached && entity.State != EntityState.Unchanged)
+                .Select(GetMessage).ToList());
         }
 
         private void AddOrUpdateEvent(ProductChangedEvent productChangedEvent)
